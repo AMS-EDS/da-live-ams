@@ -1,6 +1,7 @@
 mountpoints:
   /:
-    url: https://content.da.live/adobe/da-live/
+    # url: https://content.da.live/adobe/da-live/
+    url: https://main--da-live--adobe.hlx.live/
     type: markup
 
 folders:
