@@ -27,8 +27,9 @@ export const [setNx, getNx] = (() => {
     (nxBase, location) => {
       nx = (() => {
         const { hostname, search } = location || window.location;
+        const branch = sanitiseRef(new URLSearchParams(search).get('nx')) || 'main-ams';
+        if (hostname.includes('gov-aem')) return `https://${branch}--nexter-ams--ams-eds.gov-aem.page/nx`;
         if (!(hostname.includes('.hlx.') || hostname.includes('.aem.') || hostname.includes('local'))) return nxBase;
-        const branch = sanitiseRef(new URLSearchParams(search).get('nx')) || 'main';
         if (branch === 'local') return 'http://localhost:6456/nx';
         return `https://${branch}--da-nx--adobe.aem.live/nx`;
       })();
