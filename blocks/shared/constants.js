@@ -23,7 +23,7 @@ const DA_ADMIN_ENVS = {
 
 const DA_COLLAB_ENVS = {
   local: 'ws://localhost:4711',
-  stage: 'wss://stage-collab.da.live',
+  stage: 'wss://stg-collab.ssa-da.live',
   prod: 'wss://collab.da.live',
 };
 
@@ -35,8 +35,9 @@ function getDaEnv(location, key, envs) {
   } else if (query) {
     localStorage.setItem(key, query);
   }
-  const env = envs[localStorage.getItem(key) || 'prod'];
-  // TODO: INFRA
+  const isStage = location.origin.includes('stg.ssa-da');
+  const defaultEnv = isStage ? 'stage' : 'prod';
+  const env = envs[localStorage.getItem(key) || defaultEnv];
   return location.origin === 'https://stg.ssa-da.page' ? env.replace('.live', '.page') : env;
 }
 

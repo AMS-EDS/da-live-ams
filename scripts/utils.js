@@ -27,7 +27,7 @@ export const [setNx, getNx] = (() => {
     (nxBase, location) => {
       nx = (() => {
         const { hostname, search } = location || window.location;
-        const branch = sanitiseRef(new URLSearchParams(search).get('nx')) || 'main-ams';
+        const branch = sanitiseRef(new URLSearchParams(search).get('nx')) || 'main';
         // TODO: adopt da-nx code over nexter code.
         if (hostname.includes('gov-aem')) return `https://${branch}--da-nx-ams--ams-eds.gov-aem.live/nx`;
         if (!(hostname.includes('.hlx.') || hostname.includes('.aem.') || hostname.includes('local'))) return nxBase;
